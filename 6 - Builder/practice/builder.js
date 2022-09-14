@@ -89,3 +89,44 @@ const formMail = formBuilder.setAction('/mail')
 console.log(formMail.getContent());
 
 form2.innerHTML = formMail.getContent();
+
+class FormDirector {
+
+    constructor(formBuilder) {
+        this.setBuilder(formBuilder);
+
+    }
+
+
+    setBuilder(formBuilder) {
+        this.formBuilder = formBuilder;
+    }
+
+    createPeopleForm() {
+        this.formBuilder.reset();
+
+        this.formBuilder.setText('name', 'Name')
+            .setText('surname', 'Surname');
+    }
+
+    createContactForm() {
+        this.formBuilder.reset();
+
+        this.formBuilder.setText('name', 'Name')
+            .setMail('email', 'Email');
+    }
+
+}
+
+const director = new FormDirector(formBuilder);
+
+director.createPeopleForm();
+
+
+form3.innerHTML = formBuilder.build().getContent();
+
+director.createPeopleForm()
+form4.innerHTML = formBuilder.build().getContent();
+
+director.createContactForm()
+form5.innerHTML = formBuilder.build().getContent();
